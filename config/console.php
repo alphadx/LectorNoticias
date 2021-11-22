@@ -25,7 +25,8 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
+        'db' => $db['mysql'],
+        'db2' => $db['sqlite']
     ],
     'params' => $params,
     /*
