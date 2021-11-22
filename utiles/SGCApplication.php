@@ -1,5 +1,5 @@
 <?php
-namespace app\funciones;
+namespace app\utiles;
 
 use yii;
 

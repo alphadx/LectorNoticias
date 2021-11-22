@@ -1,6 +1,6 @@
 <?php
 
-use app\funciones\SGCApplication;
+use app\utiles\SGCApplication;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -18,7 +18,7 @@ require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
 
 $config = require __DIR__ . '/../config/web.php';
 
-require __DIR__ . '/../funciones/SGCApplication.php';
+require __DIR__ . '/../utiles/SGCApplication.php';
 
 //(new yii\web\Application($config))->run();
 (new SGCApplication($config))->run();
