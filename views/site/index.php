@@ -2,7 +2,8 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = getenv("TITULO_WEB");
+
 ?>
 <div class="site-index">
 
