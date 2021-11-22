@@ -48,3 +48,4 @@ phpunit.phar
 /node_modules
 .env
 package-lock.json
+database.sqlite
