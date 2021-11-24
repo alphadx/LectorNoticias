@@ -16,7 +16,7 @@ use Yii;
  *
  * @property Columnista $columnista0
  */
-class Columna extends \yii\db\ActiveRecord
+class Columna extends BaseModel
 {
     /**
      * {@inheritdoc}

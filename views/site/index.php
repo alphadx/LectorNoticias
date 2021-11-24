@@ -1,6 +1,12 @@
 <?php
 
+
 /* @var $this yii\web\View */
+/** @var \app\models\Columnistas[] $columnistas */
+
+use app\models\Columnista;
+use yii\grid\GridView;
+use yii\data\ArrayDataProvider;
 
 $this->title = getenv("TITULO_WEB");
 
@@ -14,6 +20,16 @@ $this->title = getenv("TITULO_WEB");
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>
+
+    <?= GridView::widget([
+        'dataProvider' => new ArrayDataProvider([
+            'allModels' => $columnistas,
+        ]),
+        'columns' => array_keys(Columnista::getTableSchema()->columns),
+        
+    ]);
+
+    ?>
 
     <div class="body-content">
 
