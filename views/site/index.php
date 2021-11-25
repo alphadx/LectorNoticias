@@ -1,15 +1,14 @@
 <?php
 
-
 /* @var $this yii\web\View */
 /** @var \app\models\Columnistas[] $columnistas */
 
 use app\models\Columnista;
+use kartik\grid\GridView as GridGridView;
 use yii\grid\GridView;
 use yii\data\ArrayDataProvider;
 
 $this->title = getenv("TITULO_WEB");
-
 ?>
 <div class="site-index">
 
@@ -26,7 +25,7 @@ $this->title = getenv("TITULO_WEB");
             'allModels' => $columnistas,
         ]),
         'columns' => array_keys(Columnista::getTableSchema()->columns),
-        
+
     ]);
 
     ?>
