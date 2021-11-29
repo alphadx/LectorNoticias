@@ -3,7 +3,7 @@
 return [
     'mysql' => [
         'class' => 'yii\db\Connection',
-        'dsn' => 'mysql:host=' . getenv("DBHOST") . ';dbname=' . getenv("DBNAME") ,
+        'dsn' => 'mysql:host=' . getenv("DBHOSTNAME") . ';dbname=' . getenv("DBNAME") ,
         'username' => getenv("DBUSERNAME"),
         'password' => getenv("DBPASSWORD"),
         'charset' => 'utf8',
