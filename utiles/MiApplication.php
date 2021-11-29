@@ -5,7 +5,7 @@ use yii;
 
 class MiApplication extends yii\web\Application
 {
-    public $name = "Lector de Noticias";    
+    public $name = "Lector";    
 }
 
 ?>
