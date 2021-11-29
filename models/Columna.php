@@ -2,7 +2,9 @@
 
 namespace app\models;
 
+use app\utiles\ProcesadorPalabras;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "columna".
@@ -12,11 +14,11 @@ use Yii;
  * @property string $url
  * @property string $fecha
  * @property string $texto
- * @property int $columnista
+ * @property int $columnista_id
  *
- * @property Columnista $columnista0
+ * @property Columnista $columnista
  */
-class Columna extends BaseModel
+class Columna extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -32,11 +34,12 @@ class Columna extends BaseModel
     public function rules()
     {
         return [
-            [['titulo', 'url', 'fecha', 'texto', 'columnista'], 'required'],
+            [['titulo', 'url', 'fecha', 'texto', 'columnista_id'], 'required'],
             [['fecha'], 'safe'],
-            [['columnista'], 'integer'],
-            [['titulo', 'url', 'texto'], 'string', 'max' => 255],
-            [['columnista'], 'exist', 'skipOnError' => true, 'targetClass' => Columnista::className(), 'targetAttribute' => ['columnista' => 'id']],
+            [['texto'], 'string'],
+            [['columnista_id'], 'integer'],
+            [['titulo', 'url'], 'string', 'max' => 255],
+            [['columnista_id'], 'exist', 'skipOnError' => true, 'targetClass' => Columnista::className(), 'targetAttribute' => ['columnista_id' => 'id']],
         ];
     }
 
@@ -51,17 +54,47 @@ class Columna extends BaseModel
             'url' => 'Url',
             'fecha' => 'Fecha',
             'texto' => 'Texto',
-            'columnista' => 'Columnista',
+            'columnista_id' => 'Columnista ID',
         ];
     }
 
     /**
-     * Gets query for [[Columnista0]].
+     * Gets query for [[Columnista]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getColumnista0()
+    public function getColumnista()
     {
-        return $this->hasOne(Columnista::className(), ['id' => 'columnista']);
+        return $this->hasOne(Columnista::className(), ['id' => 'columnista_id']);
     }
+
+    /**
+     * elimina las StopWords de la columna
+     * @return string
+     */
+    public function getTextoSinStopWords(){
+        return ProcesadorPalabras::removeFirstLineAndStopWords($this->texto);
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getTopWords($n = 10){
+        $palabras = ProcesadorPalabras::ArrayMapCantidadPalabras($this->getTextoSinStopWords(), null, true);
+        return array_slice(array_keys($palabras), 0, $n);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTop10Words()
+    {
+        return implode(" ", $this->topWords);
+    }
+    
+
+
+    /**
+     * Obtiene las 10 palabras más repetidas (sin stop words)
+     */
 }

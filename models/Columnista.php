@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\utiles\ProcesadorPalabras;
 use Yii;
 
 /**
@@ -10,10 +11,12 @@ use Yii;
  * @property int $id
  * @property string $nombre
  * @property string $url
+ * @property string $nombreAmononado
+ * @property string $topWords
  *
  * @property Columna[] $columnas
  */
-class Columnista extends BaseModel
+class Columnista extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -56,6 +59,34 @@ class Columnista extends BaseModel
      */
     public function getColumnas()
     {
-        return $this->hasMany(Columna::className(), ['columnista' => 'id']);
+        return $this->hasMany(Columna::className(), ['columnista_id' => 'id']);
     }
+
+    /**
+     * retorna el nombre del columnista, pero más bonito
+     * @return string
+     */
+    public function getNombreAmononado()
+    {
+        $foo = explode(", ", $this->nombre);
+        if(count($foo) > 1){
+            return $foo[1] . " " . $foo[0];
+        }
+        return $this->nombre;
+    }
+
+    /**
+     * retorna las 10 palabras más repetidas en las columnas por el autor
+     * @return string
+     */
+
+     public function getTopWords(){
+        $stop_words = [];
+        foreach($this->columnas as $columna)
+        {
+            $stop_words = ProcesadorPalabras::ArrayMapCantidadPalabras($columna->getTextoSinStopWords(), $stop_words, true);
+        }
+        return implode(" ", array_slice(array_keys($stop_words), 0, 10));
+    }
+    
 }

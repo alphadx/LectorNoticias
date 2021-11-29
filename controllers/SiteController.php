@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Columna;
 use app\models\Columnista;
 use Yii;
 use yii\filters\AccessControl;
@@ -64,6 +65,9 @@ class SiteController extends Controller
     {
         return $this->render('index', [
             'columnistas' => Columnista::find()->all(),
+            'columnas' => Columna::find()->orderBy([
+                'fecha' => SORT_DESC
+            ])->all(),
         ]);
     }
 
