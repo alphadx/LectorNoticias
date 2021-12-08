@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Columna;
 use app\models\ColumnaSearch;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -129,5 +130,18 @@ class ColumnaController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    public function actionLeer(){
+        if($this->request->isPost){
+            $columnas_id = $this->request->post('columnas');
+            if(is_null($columnas_id)){
+                Yii::$app->session->setFlash('Debes seleccionar a lo menos una lectura.');
+                return $this->redirect(['index']);
+            }
+            $columnas = Columna::findAll(array_keys($columnas_id));
+            return $this->render('views', ['columnas' => $columnas]);
+        }
+        return $this->return(['index']);
     }
 }

@@ -5,6 +5,7 @@
 
 use app\models\Columnista;
 use kartik\grid\GridView;
+use yii\bootstrap4\ActiveForm;
 //zuse yii\grid\GridView;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
@@ -31,6 +32,10 @@ $this->title = getenv("TITULO_WEB");
                     'dataProvider' => new ArrayDataProvider([
                         'allModels' => $columnistas,
                     ]),
+                    'tableOptions' => [
+//                        'id' => 'theDatatable',
+                        'class'=>'table-sm'
+                        ],
                     'columns' => //array_keys(Columnista::getTableSchema()->columns),
                     [
                         [
@@ -54,12 +59,32 @@ $this->title = getenv("TITULO_WEB");
             </div> -->
             <div class="col-lg-12">
                 <h2>Columnas</h2>
+                <?php
+                    $form = ActiveForm::begin([
+                        'id' => 'columnas-form',
+                        'options' => ['class' => ''],
+                        'method' => 'post',
+                        'action' => '/columna/leer'
+                    ]); 
+                ?>
                 <?= gridView::widget([
                     'dataProvider' => new ArrayDataProvider([
                         'allModels' => $columnas,
                     ]),
+                    'tableOptions' => [
+//                        'id' => 'theDatatable',
+                        'class'=>'table-sm'
+                        ],
                     'columns' => [
                         //'id',
+                        [
+                            'label' => '<span class="fa fa-fw fa-cubes">',
+                            'format' => 'raw',
+                            'value' => function ($columna) {
+                                return Html::checkbox("columnas[$columna->id]", false, $options = ['label' => '']);
+                            },
+                            'encodeLabel' => false,
+                        ],
                         [
                             'label' => 'URL',
                             'format' => 'raw',
@@ -75,6 +100,11 @@ $this->title = getenv("TITULO_WEB");
                 ]);
 
                 ?>
+
+                <div class="form-group">
+                    <?= Html::submitButton('Unir Columnas', ['class' => 'btn btn-success']) ?>
+                </div>
+                <?php ActiveForm::end() ?>
                 
             </div>
         </div>
