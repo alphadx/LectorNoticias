@@ -99,5 +99,6 @@ if (YII_ENV_DEV) {
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 }
+$config['components']['assetManager']['bundles']['yii\bootstrap4\BootstrapAsset']['sourcePath'] = '@app/views/css';
 
 return $config;

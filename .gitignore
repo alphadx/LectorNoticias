@@ -51,3 +51,4 @@ package-lock.json
 /db
 database.sqlite
 /assets
+/bootstrap4/.sass-cache
