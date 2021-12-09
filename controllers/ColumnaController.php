@@ -142,6 +142,6 @@ class ColumnaController extends Controller
             $columnas = Columna::findAll(array_keys($columnas_id));
             return $this->render('views', ['columnas' => $columnas]);
         }
-        return $this->return(['index']);
+        return $this->redirect(['index']);
     }
 }
