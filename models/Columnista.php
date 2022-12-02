@@ -59,7 +59,7 @@ class Columnista extends \yii\db\ActiveRecord
      */
     public function getColumnas()
     {
-        return $this->hasMany(Columna::className(), ['columnista_id' => 'id']);
+        return $this->hasMany(Columna::class, ['columnista_id' => 'id']);
     }
 
     /**
@@ -81,12 +81,12 @@ class Columnista extends \yii\db\ActiveRecord
      */
 
      public function getTopWords(){
-        $stop_words = [];
+        $top_words = [];
         foreach($this->columnas as $columna)
         {
-            $stop_words = ProcesadorPalabras::ArrayMapCantidadPalabras($columna->getTextoSinStopWords(), $stop_words, true);
+            $top_words = ProcesadorPalabras::ArrayMapCantidadPalabras($columna->getTextoSinStopWords(), $top_words, true);
         }
-        return implode(" ", array_slice(array_keys($stop_words), 0, 10));
+        return implode(" ", array_slice(array_keys($top_words), 0, 10));
     }
     
 }

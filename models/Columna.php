@@ -39,7 +39,7 @@ class Columna extends \yii\db\ActiveRecord
             [['texto'], 'string'],
             [['columnista_id'], 'integer'],
             [['titulo', 'url'], 'string', 'max' => 255],
-            [['columnista_id'], 'exist', 'skipOnError' => true, 'targetClass' => Columnista::className(), 'targetAttribute' => ['columnista_id' => 'id']],
+            [['columnista_id'], 'exist', 'skipOnError' => true, 'targetClass' => Columnista::class, 'targetAttribute' => ['columnista_id' => 'id']],
         ];
     }
 
