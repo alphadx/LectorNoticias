@@ -41,6 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             */
             'fecha',
             'texto:ntext',
+            /*
             [
                 'label' => 'Columnista',
                 'value' => 'columnista.nombreAmononado',
@@ -48,8 +49,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter'=>ArrayHelper::map(Columnista::find()->orderBy('nombre')->all(), 'id', 'nombreAmononado'),
                 //'filter'=>ArrayHelper::map(Columnista::find()->orderBy('nombre')->asArray()->all(), 'id', 'nombreAmononado'), //esto retorna una 3-tupla (nombre => a, id => 1, url => www)
             ],
+            */
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

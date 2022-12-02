@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ColumnistaSearch */
@@ -29,6 +30,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'nombre',
             'url:url',
+            'topWords',
+            [
+                'label' => 'Columnas',
+                'format' => 'raw',
+                'value' => function($columnista) {
+                    return '<a href="'.Url::toRoute(['columna/index', 'sort'=> '-fecha', 'ColumnaSearch[columnista_id]' => $columnista->id]).'">'. 'columnas' .'</a>';
+                }
+            ],
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
