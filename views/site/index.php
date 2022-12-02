@@ -66,7 +66,7 @@ $this->title = getenv("TITULO_WEB");
                             'label' => 'URL',
                             'format' => 'raw',
                             'value' => function($columna) {
-                                return Html::a($columna->id, Url::to('columna/view?id='. $columna->id));
+                                return Html::a($columna->id, Url::to('/columna/view?id='. $columna->id));
                             }
                         ],
                     'titulo', 'fecha', 
