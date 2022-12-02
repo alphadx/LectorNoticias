@@ -1,13 +1,14 @@
 <?php
 
 /* @var $this yii\web\View */
-/** @var \app\models\Columna[] $columnas */
+/** @var yii\db\ActiveQueryInterface $columnas */
 
 use app\models\Columnista;
 use kartik\grid\GridView;
 use yii\bootstrap4\ActiveForm;
+use yii\data\ActiveDataProvider;
 //zuse yii\grid\GridView;
-use yii\data\ArrayDataProvider;
+//use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -36,8 +37,16 @@ $this->title = getenv("TITULO_WEB");
                     ]); 
                 ?>
                 <?= gridView::widget([
-                    'dataProvider' => new ArrayDataProvider([
-                        'allModels' => $columnas,
+                    'dataProvider' => new ActiveDataProvider([
+                        'query' => $columnas,
+                        'pagination' => [
+                            'pageSize' => 20,
+                        ],
+                        'sort' => [
+                            'defaultOrder' => [
+                                'fecha' => SORT_DESC,
+                            ]
+                        ],
                     ]),
                     'tableOptions' => [
 //                        'id' => 'theDatatable',

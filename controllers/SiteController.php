@@ -64,12 +64,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index', [
-            'columnas' => Columna::find('titulo', 'url', 'fecha', 'columnista_id')
-            ->orderBy([
-                'fecha' => SORT_DESC
-            ])
-            ->limit(20)
-            ->all(),
+            'columnas' => Columna::find(),
         ]);
     }
 
