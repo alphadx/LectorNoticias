@@ -133,13 +133,13 @@ class ColumnaController extends Controller
     }
 
     public function actionLeer(){
-        if($this->request->isPost){
-            $columnas_id = $this->request->post('columnas');
+        if($this->request->isGet){
+            $columnas_id = $this->request->get('id');
             if(is_null($columnas_id)){
                 Yii::$app->session->setFlash('Debes seleccionar a lo menos una lectura.');
                 return $this->redirect(['index']);
             }
-            $columnas = Columna::findAll(array_keys($columnas_id));
+            $columnas = Columna::findAll(['id' => $columnas_id]);
             return $this->render('views', ['columnas' => $columnas]);
         }
         return $this->redirect(['index']);

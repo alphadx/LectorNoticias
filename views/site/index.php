@@ -1,6 +1,6 @@
 <?php
 
-/* @var $this yii\web\View */
+/** @var yii\web\View $this */
 /** @var yii\db\ActiveQueryInterface $columnas */
 
 use app\models\Columnista;
@@ -14,28 +14,33 @@ use yii\helpers\Url;
 
 $this->title = getenv("TITULO_WEB");
 ?>
+
+<?php
+$url = Url::to('/columna/leer');
+
+// $this->registerJs(<<<JS
+    
+//     var lectura = function (){
+//         let url = "$url";
+//         let params = $('.columna-id:checked').map(function(){return escape("id[]") + "=" + escape(this.value)}).get().join("&");
+//         if(params.length > 0){
+//             window.location = url + '?' + params;
+//         }else{
+//             alert("Seleccione a lo menos una columna");
+//         }
+//     }
+
+// JS
+// );
+
+?>
+
 <div class="site-index">
-
-    <!-- <div class="jumbotron text-center bg-transparent">
-        <h1 class="display-4"><?=getenv("TITULO_WEB")?></h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div> -->
     <div class="body-content">
 
         <div class="row">
             <div class="col-lg-12">
                 <h2>Columnas</h2>
-                <?php
-                    $form = ActiveForm::begin([
-                        'id' => 'columnas-form',
-                        'options' => ['class' => ''],
-                        'method' => 'get',
-                        'action' => '/columna/leer'
-                    ]); 
-                ?>
                 <?= gridView::widget([
                     'dataProvider' => new ActiveDataProvider([
                         'query' => $columnas,
@@ -58,9 +63,10 @@ $this->title = getenv("TITULO_WEB");
                             'label' => '<span class="fa fa-fw fa-cubes">',
                             'format' => 'raw',
                             'value' => function ($columna) {
-                                return Html::checkbox("columnas[$columna->id]", false, $options = ['label' => '']);
+                                return Html::checkbox("columna", false, $options = ['label' => '', "class" => 'columna-id', "value" => $columna->id]);
                             },
                             'encodeLabel' => false,
+                            'contentOptions' => ['style' => 'width:2%;'],
                         ],
                         [
                             'label' => 'URL',
@@ -71,7 +77,7 @@ $this->title = getenv("TITULO_WEB");
                         ],
                     'titulo', 'fecha', 
                     'columnista.nombreAmononado',
-                    'columnista.topWords',
+                    //'columnista.topWords',
                 ],
 
                 ]);
@@ -79,12 +85,22 @@ $this->title = getenv("TITULO_WEB");
                 ?>
 
                 <div class="form-group">
-                    <?= Html::submitButton('Unir Columnas', ['class' => 'btn btn-success']) ?>
+                    <?= Html::button('Unir Columnas', ['class' => 'btn btn-success', 'onclick' => 'lectura()']) ?>
                 </div>
-                <?php ActiveForm::end() ?>
                 
             </div>
         </div>
 
     </div>
 </div>
+<script>
+    var lectura = function (){
+        let url = "/columna/leer";
+        let params = $('.columna-id:checked').map(function(){return escape("id[]") + "=" + escape(this.value)}).get().join("&");
+        if(params.length > 0){
+            window.location = url + '?' + params;
+        }else{
+            alert("Seleccione a lo menos una columna");
+        }
+    }
+</script>
