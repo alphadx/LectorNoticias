@@ -11,6 +11,7 @@ use yii\data\ActiveDataProvider;
 //use yii\data\ArrayDataProvider;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\web\View;
 
 $this->title = getenv("TITULO_WEB");
 ?>
@@ -18,20 +19,19 @@ $this->title = getenv("TITULO_WEB");
 <?php
 $url = Url::to('/columna/leer');
 
-// $this->registerJs(<<<JS
+$this->registerJs(<<<JS
     
-//     var lectura = function (){
-//         let url = "$url";
-//         let params = $('.columna-id:checked').map(function(){return escape("id[]") + "=" + escape(this.value)}).get().join("&");
-//         if(params.length > 0){
-//             window.location = url + '?' + params;
-//         }else{
-//             alert("Seleccione a lo menos una columna");
-//         }
-//     }
-
-// JS
-// );
+    var lectura = function (){
+       let url = "$url";
+       let params = $('.columna-id:checked').map(function(){return escape("id[]") + "=" + escape(this.value)}).get().join("&");
+       if(params.length > 0){
+           window.location = url + '?' + params;
+       }else{
+           alert("Seleccione a lo menos una columna");
+       }
+   }
+JS
+, View::POS_END, 'Generador de URL');
 
 ?>
 
@@ -93,14 +93,3 @@ $url = Url::to('/columna/leer');
 
     </div>
 </div>
-<script>
-    var lectura = function (){
-        let url = "/columna/leer";
-        let params = $('.columna-id:checked').map(function(){return escape("id[]") + "=" + escape(this.value)}).get().join("&");
-        if(params.length > 0){
-            window.location = url + '?' + params;
-        }else{
-            alert("Seleccione a lo menos una columna");
-        }
-    }
-</script>
