@@ -62,6 +62,6 @@ class Columnista2 extends BaseModel
      */
     public function getColumnas()
     {
-        return $this->hasMany(Columna2::className(), ['columnista' => 'id']);
+        return $this->hasMany(Columna2::class, ['columnista' => 'id']);
     }
 }

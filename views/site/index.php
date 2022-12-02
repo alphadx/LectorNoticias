@@ -32,7 +32,7 @@ $this->title = getenv("TITULO_WEB");
                     $form = ActiveForm::begin([
                         'id' => 'columnas-form',
                         'options' => ['class' => ''],
-                        'method' => 'post',
+                        'method' => 'get',
                         'action' => '/columna/leer'
                     ]); 
                 ?>

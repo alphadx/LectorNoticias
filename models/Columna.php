@@ -65,7 +65,7 @@ class Columna extends \yii\db\ActiveRecord
      */
     public function getColumnista()
     {
-        return $this->hasOne(Columnista::className(), ['id' => 'columnista_id']);
+        return $this->hasOne(Columnista::class, ['id' => 'columnista_id']);
     }
 
     /**

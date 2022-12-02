@@ -43,7 +43,7 @@ class Columna2 extends BaseModel
             [['columnista'], 'integer'],
             [['titulo', 'url'], 'string', 'max' => 255],
             [['texto'], 'string'],
-            [['columnista'], 'exist', 'skipOnError' => true, 'targetClass' => Columnista2::className(), 'targetAttribute' => ['columnista' => 'id']],
+            [['columnista'], 'exist', 'skipOnError' => true, 'targetClass' => Columnista2::class, 'targetAttribute' => ['columnista' => 'id']],
         ];
     }
 
@@ -69,6 +69,6 @@ class Columna2 extends BaseModel
      */
     public function getElColumnista()
     {
-        return $this->hasOne(Columnista2::className(), ['id' => 'columnista']);
+        return $this->hasOne(Columnista2::class, ['id' => 'columnista']);
     }
 }
