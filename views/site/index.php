@@ -77,7 +77,7 @@ $url = Url::to('/columna/leer');
                         ],
                     'titulo', 'fecha', 
                     'columnista.nombreAmononado',
-                    //'columnista.topWords',
+                    'columnista.topWords',
                 ],
 
                 ]);
