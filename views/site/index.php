@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
-/** @var \app\models\Columnistas[] $columnistas */
+/** @var \app\models\Columna[] $columnas */
 
 use app\models\Columnista;
 use kartik\grid\GridView;
@@ -25,38 +25,6 @@ $this->title = getenv("TITULO_WEB");
     <div class="body-content">
 
         <div class="row">
-            <!-- <div class="col-lg-6">
-                <h2>Columnistas</h2>
-
-                <?= gridView::widget([
-                    'dataProvider' => new ArrayDataProvider([
-                        'allModels' => $columnistas,
-                    ]),
-                    'tableOptions' => [
-//                        'id' => 'theDatatable',
-                        'class'=>'table-sm'
-                        ],
-                    'columns' => //array_keys(Columnista::getTableSchema()->columns),
-                    [
-                        [
-                            'label' => 'ID',
-                            'attribute' => 'id',
-                            'format' => ['decimal', 0],
-                        ],
-                        "nombre",
-                        [
-                            'label' => 'URL',
-                            'format' => 'raw',
-                            'value' => function($columnista) {
-                                return Html::a("Origen", "https://www.elmercurio.com".$columnista->url);
-                            }
-                        ],
-                    ]
-
-                ]);
-
-                ?>
-            </div> -->
             <div class="col-lg-12">
                 <h2>Columnas</h2>
                 <?php
