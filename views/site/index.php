@@ -50,6 +50,7 @@ JS
                         'sort' => [
                             'defaultOrder' => [
                                 'fecha' => SORT_DESC,
+                                'id' => SORT_DESC,
                             ]
                         ],
                     ]),
@@ -76,7 +77,10 @@ JS
                             }
                         ],
                     'titulo', 'fecha', 
-                    'columnista.nombreAmononado',
+                    [
+                        'label' => 'Columnista',
+                        'value' => 'columnista.nombreAmononado',
+                    ],
                     'columnista.topWords',
                 ],
 
