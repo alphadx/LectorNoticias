@@ -632,7 +632,7 @@ class ProcesadorPalabras
         if(count($words) > 1)
         {
             $words = array_filter($words, function ($w) use (&$STOP_WORDS) {
-                return !isset($STOP_WORDS[strtolower($w)]);
+                return !isset($STOP_WORDS[mb_strtolower($w)]);
                 # if utf-8: mb_strtolower($w, "utf-8")
                 }
             );
@@ -666,17 +666,17 @@ class ProcesadorPalabras
     public static function ArrayMapCantidadPalabras($texto, $array_to_merge = null, $sort = false)
     {
         $palabras = [];
-        foreach(explode(' ', $texto) as $palabra)
+        foreach(explode(' ', $texto) as $w)
         {
-            if(!is_numeric($palabra))
+            if(!is_numeric($w))
             {
-                if(!isset($palabras[strtolower($palabra)]))
+                if(!isset($palabras[mb_strtolower($w)]))
                 {
-                    $palabras[strtolower($palabra)] = 1;
+                    $palabras[mb_strtolower($w)] = 1;
                 }
                 else
                 {
-                    $palabras[strtolower($palabra)] += 1;
+                    $palabras[mb_strtolower($w)] += 1;
                 }
             } 
         }
