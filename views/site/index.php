@@ -38,9 +38,8 @@ $this->registerJs(<<<JS
     }
 
 
-
-
-JS, View::POS_END, 'Generador de URL');
+JS
+, View::POS_END, 'Generador de URL');
 
 ?>
 
