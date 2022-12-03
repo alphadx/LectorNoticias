@@ -21,17 +21,26 @@ $url = Url::to('/columna/leer');
 
 $this->registerJs(<<<JS
     
-    var lectura = function (){
-       let url = "$url";
-       let params = $('.columna-id:checked').map(function(){return escape("id[]") + "=" + escape(this.value)}).get().join("&");
-       if(params.length > 0){
-           window.location = url + '?' + params;
-       }else{
-           alert("Seleccione a lo menos una columna");
-       }
-   }
-JS
-, View::POS_END, 'Generador de URL');
+    var lectura = function (e){
+        //console.log(e.button);
+        let url = "$url";
+        let params = $('.columna-id:checked').map(function(){return escape("id[]") + "=" + escape(this.value)}).get().join("&");
+        if(params.length > 0){
+            if(e.button == 0){
+                window.location = url + '?' + params;
+            }
+            if(e.button == 1){
+                window.open(url + '?' + params, '_blank');
+            }
+        }else{
+            alert("Seleccione a lo menos una columna");
+        }
+    }
+
+
+
+
+JS, View::POS_END, 'Generador de URL');
 
 ?>
 
@@ -89,7 +98,7 @@ JS
                 ?>
 
                 <div class="form-group">
-                    <?= Html::button('Unir Columnas', ['class' => 'btn btn-success', 'onclick' => 'lectura()']) ?>
+                    <?= Html::button('Unir Columnas', ['class' => 'btn btn-success', 'onmousedown' => 'lectura(event)']) ?>
                 </div>
                 
             </div>
