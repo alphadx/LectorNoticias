@@ -85,14 +85,13 @@ JS, View::POS_END, 'Generador de URL');
                                 return Html::a($columna->id, Url::to('/columna/view?id='. $columna->id));
                             }
                         ],
-                    'titulo', 'fecha', 
-                    [
-                        'label' => 'Columnista',
-                        'value' => 'columnista.nombreAmononado',
+                        'titulo', 'fecha', 
+                        [
+                            'label' => 'Columnista',
+                            'value' => 'columnista.nombreAmononado',
+                        ],
+                        'columnista.topWords',
                     ],
-                    'columnista.topWords',
-                ],
-
                 ]);
 
                 ?>
