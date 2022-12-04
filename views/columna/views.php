@@ -28,7 +28,12 @@ foreach($columnas as $model){
             //'titulo',
             'fecha',
             'columnista.topWords',
-            'textoWebSinAutor:raw',
+            [
+                'label' => 'Texto',
+                'format' => 'raw',
+                'value' => 'textoWebSinAutor'
+            ],
+            //'textoWebSinAutor:raw',
             // [
             //     'label' => 'URL',
             //     'format' => 'raw',
