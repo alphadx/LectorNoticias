@@ -31,7 +31,7 @@ foreach($columnas as $model){
             [
                 'label' => 'Texto',
                 'format' => 'raw',
-                'value' => 'textoWebSinAutor'
+                'value' => function($columna){return $columna->textoWebSinAutor;}
             ],
             //'textoWebSinAutor:raw',
             // [
