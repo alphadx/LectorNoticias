@@ -28,12 +28,8 @@ foreach($columnas as $model){
             //'titulo',
             'fecha',
             'columnista.topWords',
-            [
-                'label' => 'Texto',
-                'format' => 'raw',
-                'value' => function($columna){return $columna->textoWebSinAutor;}
-            ],
-            //'textoWebSinAutor:raw',
+            //Attribute:Format:Label
+            'textoWebSinAutor:raw:Texto',
             // [
             //     'label' => 'URL',
             //     'format' => 'raw',
