@@ -18,7 +18,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property Columnista $columnista
  */
-class Columna extends \yii\db\ActiveRecord
+class Columna extends BaseModel
 {
     /**
      * {@inheritdoc}
@@ -90,6 +90,27 @@ class Columna extends \yii\db\ActiveRecord
     public function getTop10Words()
     {
         return implode(" ", $this->topWords);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTextoWeb()
+    {
+        $pos = strpos($this->texto, "\n");
+        $texto = substr_replace($this->texto, '', $pos, 1);
+        $texto = str_replace("                      ", "</p><p>", $texto);
+        return "<p>" . str_replace("\n\n", "</p><p>", $texto) . "</p>";
+    }
+
+    /**
+     * @return string
+     */
+    public function getTextoWebSinAutor()
+    {
+        $pos = strpos($this->texto, "\n");
+        $texto = substr($this->texto,$pos);
+        return "<p>" . str_replace("\n\n", "</p><p>", $texto) . "</p>";
     }
     
 
