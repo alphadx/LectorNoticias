@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             */
             'fecha',
-            'texto:ntext',
+            'textoWeb:raw:Texto',
             /*
             [
                 'label' => 'Columnista',
