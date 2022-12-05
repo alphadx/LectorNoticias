@@ -87,7 +87,10 @@ JS
                         'titulo', 'fecha', 
                         [
                             'label' => 'Columnista',
-                            'value' => 'columnista.nombreAmononado',
+                            'format' => 'raw',
+                            'value' => function($columna) {
+                                return '<a href="'.Url::toRoute(['columna/index', 'sort'=> '-fecha', 'ColumnaSearch[columnista_id]' => $columna->columnista->id]).'">'. $columna->columnista->nombreAmononado .'</a>';
+                            }
                         ],
                         'columnista.topWords',
                     ],
